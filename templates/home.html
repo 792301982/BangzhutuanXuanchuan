@@ -1,0 +1,275 @@
+﻿﻿<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>帮主团试用</title>
+    <link href="static/css/reset.min.css" rel="stylesheet" type="text/css">
+    <link href="static/css/news.min.css" rel='stylesheet' type="text/css">
+    <link href="static/css/welcome.min.css" rel='stylesheet' type="text/css">
+    <link href="static/css/layui.css" rel='stylesheet' media="all">
+    <script type="text/javascript" src="static/lib/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="home-tools" style="position: fixed;right: 10px;">
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=53987035&site=qq&menu=yes"> <img class="home-tools-1 pointer"
+                src="static/picture/home_tools_1.png" width="96" height="96"></a>
+    </div>
+
+    <div style="height:349;width:240px;position: fixed;right:10px;bottom: 10px;z-index: 1000000;">
+        <div style="width: 230px;height: 35px;background-color: #00AEF3;color: white;line-height: 35px;padding-left: 10px;">请您留言</div>
+        <div style="width: 240px;height: 322px;background-color: #ededed">
+            <style>
+                #form textarea {
+                    margin-top: 20px;
+                    margin-left: 10px;
+                }
+
+                #form input {
+                    margin-top: 10px;
+                    margin-left: 10px;
+                }
+
+                #form button {
+                    margin-top: 10px;
+                    margin-left: 10px;
+                }
+            </style>
+            <div id="form">
+                <textarea id="text" style="width: 222px;height: 81px;"
+                    placeholder="请在此输入留言内容，我们会尽快与您联系。（必填）"></textarea>
+                <input id="name" placeholder="姓名">
+                <input id="phonenumber" placeholder="电话（必填）">
+                <input id="email" placeholder="邮箱">
+                <input id="address" placeholder="地址">
+                <button style="width: 90px;height: 35px;background-color: #00AEF3;">发送</button>
+            </div>
+            <script>
+                $("#form button").click(function () {
+                    if ($("#text").val().length == 0 || $("#text").val().length > 200) {
+                        alert("留言内容不能为空或超过200字。");
+                    }
+                    else if ($("#phonenumber").val().length == 0) {
+                        alert("电话号码不能为空。");
+                    }
+                    else {
+                        $.ajax(
+                            {
+                                url: "/getform",
+                                type: "POST",
+                                data: {
+                                    'text': $("#text").val(),
+                                    'name': $("#name").val(),
+                                    'phonenumber': $("#phonenumber").val(),
+                                    'phonenumber': $("#phonenumber").val(),
+                                    'email': $("#email").val(),
+                                    'address': $("#address").val(),
+                                },
+                                async: true,
+
+                                success: function (returndata) {
+                                    if (returndata == "success") {
+                                        alert("提交成功");
+                                        location.reload();
+                                    }
+                                },
+                                error: function (returndata) {
+
+                                    alert("提交出错");
+
+                                }
+                            });
+                    }
+                });
+            </script>
+        </div>
+    </div>
+    <div class="home" style="width: 100%;">
+        <div class="home-header flex-row-center">
+
+            <img class="home-header-icon" src="static/picture/bxn_logo.png" width="207" height="56">
+
+            <div style="flex:1"></div>
+            <!-- <a href="/admin">
+                <div class="home-header-jump flex-over-center">
+                    <img src="static/picture/login.png" width="69" height="17">
+                </div>
+            </a> -->
+
+        </div>
+        <div class="home-content flex-column-center">
+            <div class="home-nav  flex-column-center home-nav-top-pic">
+                <img class="home-nav-img-1" src="static/picture/home_nav_1.png" width="843" height="262">
+            </div>
+            <div class="home-nav" style="background: #FCFCFC;">
+                <div class="flex-row flex-over-center home-nav-center">
+                    <div class="home-nav-left flex-column home-nav-left-1 layui-anim layui-anim-up">
+                        <div class="home-nav-title">商家只需提供放单计划表</div>
+                        <div class="home-nav-text">例如填写商品链接、主图，进店关键词、单量等</div>
+                        <div class="home-nav-text">剩下的统统交给我们</div>
+                    </div>
+                    <div class="home-nav-right home-nav-right-1">
+                        <img src="static/picture/home_nav_2.png" width="366" height="232">
+                    </div>
+                </div>
+                <div class="flex-column home-nav-center" style="width: 1000px">
+                    <div class="home-nav-center-title">我们能帮你</div>
+                    <div class="flex-row">
+                        <div class="home-nav-center-nav flex-column layui-anim layui-anim-upbit">
+                            <img class="home-nav-center-nav-pic" src="static/picture/nav_2_1.png">
+                            <div class="home-nav-center-nav-title">组织买家接单</div>
+                        </div>
+                        <div class="home-nav-center-nav flex-column layui-anim layui-anim-upbit">
+                            <img class="home-nav-center-nav-pic" src="static/picture/nav_2_2.png">
+                            <div class="home-nav-center-nav-title">对买家进行验号</div>
+                        </div>
+                        <div class="home-nav-center-nav flex-column layui-anim layui-anim-upbit">
+                            <img class="home-nav-center-nav-pic" src="static/picture/nav_2_3.png">
+                            <div class="home-nav-center-nav-title">沟通买家做单流程</div>
+                        </div>
+                        <div class="home-nav-center-nav flex-column layui-anim layui-anim-upbit">
+                            <img class="home-nav-center-nav-pic" src="static/picture/nav_2_4.png">
+                            <div class="home-nav-center-nav-title">后台核对发货</div>
+                        </div>
+                    </div>
+                    <div class="flex-row">
+                        <div class="home-nav-center-nav flex-column layui-anim layui-anim-upbit">
+                            <img class="home-nav-center-nav-pic" src="static/picture/nav_2_5.png">
+                            <div class="home-nav-center-nav-title">给买家返款</div>
+                        </div>
+                        <div class="home-nav-center-nav flex-column layui-anim layui-anim-upbit">
+                            <img class="home-nav-center-nav-pic" src="static/picture/nav_2_6.png">
+                            <div class="home-nav-center-nav-title">解决售后纠纷</div>
+                        </div>
+                        <div class="home-nav-center-nav flex-column layui-anim layui-anim-upbit">
+                            <img class="home-nav-center-nav-pic" src="static/picture/nav_2_7.png">
+                            <div class="home-nav-center-nav-title">联系买家自定义评论</div>
+                        </div>
+                        <div class="home-nav-center-nav flex-column layui-anim layui-anim-upbit">
+                            <img class="home-nav-center-nav-pic" src="static/picture/nav_2_8.png">
+                            <div class="home-nav-center-nav-title">联系买家追加评价</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="home-nav">
+                <div class="flex-row flex-over-center home-nav-center">
+                    <div class="home-nav-left flex-column">
+                        <img src="static/picture/home_nav_3.png" width="367" height="232">
+                    </div>
+                    <div class="home-nav-right" style="text-align: right">
+                        <div class="home-nav-title">活好，话不多</div>
+                        <div class="home-nav-text" style="margin-top: 32px">吹嘘的介绍千篇一律， 实干的伙伴万里挑一</div>
+                    </div>
+                </div>
+                <div class="flex-column home-nav-center" style="width: 1000px">
+                    <div class="home-nav-center-title" style="text-align: right">给力的风险保障体系</div>
+                    <div class="flex-row" style="margin-top:36px;justify-content: space-between">
+                        <div class="home-nav-center-about flex-column-center layui-anim layui-anim-upbit">
+                            <div class="home-nav-center-about-solid" style="background:#78FFC9"></div>
+                            <img class="home-nav-center-about-pic" src="static/picture/nav_4_1.png">
+                            <div class="home-nav-center-about-title">多平台矩阵验号</div>
+                        </div>
+                        <div class="home-nav-center-about flex-column-center layui-anim layui-anim-upbit">
+                            <div class="home-nav-center-about-solid" style="background:#78B3FF"></div>
+                            <img class="home-nav-center-about-pic" src="static/picture/nav_4_2.png">
+                            <div class="home-nav-center-about-title">系统严控买家接单频率</div>
+                        </div>
+                        <div class="home-nav-center-about flex-column-center layui-anim layui-anim-upbit">
+                            <div class="home-nav-center-about-solid" style="background:#FF78BC"></div>
+                            <img class="home-nav-center-about-pic" src="static/picture/nav_4_3.png">
+                            <div class="home-nav-center-about-title">发生降权<br>赔付佣金</div>
+                        </div>
+                        <div class="home-nav-center-about flex-column-center layui-anim layui-anim-upbit">
+                            <div class="home-nav-center-about-solid" style="background:#FF7878"></div>
+                            <img class="home-nav-center-about-pic" src="static/picture/nav_4_4.png">
+                            <div class="home-nav-center-about-title">发生恶意退款全额<br>赔付本金</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="home-nav flex-column-center"
+                style="background:linear-gradient(180deg,rgba(255,74,112,1) 0%,rgba(255,81,81,1) 100%);">
+                <div class="home-nav-4-title">
+                    合作门槛低
+                </div>
+                <div class="flex-row" style="margin-top: 88px;width: 1000px;justify-content: space-around;">
+                    <div class="home-nav-4-about layui-anim layui-anim-upbit">
+                        <img class="home-nav-4-pic" src="static/picture/nav_5_1.png">
+                        <div class="home-nav-4-about-title">不收年费</div>
+                    </div>
+                    <div class="home-nav-4-about layui-anim layui-anim-upbit">
+                        <img class="home-nav-4-pic" src="static/picture/nav_5_2.png">
+                        <div class="home-nav-4-about-title">不捆绑合作</div>
+                    </div>
+                    <div class="home-nav-4-about layui-anim layui-anim-upbit">
+                        <img class="home-nav-4-pic" src="static/picture/nav_5_3.png">
+                        <div class="home-nav-4-about-title">不玩套路</div>
+                    </div>
+                    <div class="home-nav-4-about layui-anim layui-anim-upbit">
+                        <img class="home-nav-4-pic" src="static/picture/nav_5_4.png">
+                        <div class="home-nav-4-about-title">不限店铺</div>
+                    </div>
+                    <div class="home-nav-4-about layui-anim layui-anim-upbit">
+                        <img class="home-nav-4-pic" src="static/picture/nav_5_5.png">
+                        <div class="home-nav-4-about-title">不限单量</div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center;font-size: 32px;margin-top: 20px;">
+                <p>佣金标准</p>
+                <img src="static/picture/a06(1).jpg">
+            </div>
+            <div class="home-nav flex-column-center" style="padding-bottom: 40px">
+                <div class="home-nav-5-title">
+                    丰&nbsp;富&nbsp;的&nbsp;直&nbsp;播&nbsp;资&nbsp;源
+                </div>
+                <div class="home-nav-5-text">自有淘宝主播 + 日秒千单不降权 + 千次验证 + 上新首选</div>
+                <img src="static/picture/home_nav_5_table.png" width="820" height="327" style="margin-top: 35px">
+            </div>
+            <div class="home-nav flex-column-center" style="background: #F8F8F8">
+                <div class="home-nav-5-title">
+                    常见问题
+                </div>
+                <div class="flex-row" style="margin-top: 88px;width: 1000px;justify-content: space-around">
+                    <img class="home-nav-7-about layui-anim layui-anim-upbit" src="static/picture/nav_7_1.png"
+                        width="240" height="262">
+                    <img class="home-nav-7-about layui-anim layui-anim-upbit" src="static/picture/nav_7_2.png"
+                        width="240" height="262">
+                    <img class="home-nav-7-about layui-anim layui-anim-upbit" src="static/picture/nav_7_3.png"
+                        width="240" height="262">
+                    <img class="home-nav-7-about layui-anim layui-anim-upbit" src="static/picture/nav_7_4.png"
+                        width="240" height="262">
+                </div>
+            </div>
+            <div class="home-nav flex-column-center"
+                style=" height: 517px;padding-bottom: 0px;background: url('static/images/home_back_9.png') center center">
+            </div>
+            <div class="home-nav-solid"></div>
+            <div class="home-nav flex-column-center">
+                <div class="home-nav-5-title">
+                    合作流程
+                </div>
+                <img src="static/picture/nav_8_back.png" width="1031" height="144" style="margin-top: 70px">
+            </div>
+
+            <div class="home-nav-back" style="height: 200px"></div>
+
+        </div>
+
+    </div>
+    <div class="home-bottom-back">
+    </div>
+</body>
+
+
+
+
+
+<script type="text/javascript" src="static/js/vue.js"></script>
+<script type="text/javascript" src="static/js/jquery.js"></script>
+<script type="text/javascript" src="static/js/layui.all.js"></script>
+
+
+</html>
